@@ -23,89 +23,67 @@ import openpyxl #엑셀
 
 # text.start()
 
-
-excel = openpyxl.load_workbook('D:\\js\\code\\auto_c&v_in_excel\\출력자료등록_양식_한진-메론양식(L-11) 메모 위치 이동 물어보기.xlsx' , data_only=True )
+dir = 'C:\\Users\\LIM\\Desktop\\(엑셀파일)메론양식(23년).xlsx'
+excel = openpyxl.load_workbook(dir , data_only=True )
 excel_ws = excel.active
 
 while True:
     #받는 분
     k = keyboard.read_key()
+    n = 0   
     if k == "1":
         pyautogui.hotkey('ctrl', 'c')
         time.sleep(0.1)
         a = pyperclip.paste()
-        print('받는분 :',a)
+        print('1 받는분 :',a)
         for i in range(2, 10000):
             A = excel_ws['A{}'.format(i)]
             if A.value == None:
                 excel_ws['A{}'.format(i)] = a
-                break     
+                n = i
+                break   
     #받는 분 전화
     if k == "2":
         pyautogui.hotkey('ctrl', 'c')
         time.sleep(0.1)
         b = pyperclip.paste()
-        print('전화번호 :',b)
-        for i in range(2, 10000):
-            B = excel_ws['B{}'.format(i)]
-            if B.value == None:
-                excel_ws['B{}'.format(i)] = b
-                break
+        print('2 전화번호 :',b)
+        excel_ws['B{}'.format(i)] = b
     #주소
     if k == "3":
         pyautogui.hotkey('ctrl', 'c')
         time.sleep(0.1)
         b = pyperclip.paste()
-        print('주소 :',b)
-        for i in range(2, 10000):
-            B = excel_ws['D{}'.format(i)]
-            if B.value == None:
-                excel_ws['D{}'.format(i)] = b
-                break
+        print('3 주소 :',b)
+        excel_ws['D{}'.format(i)] = b
     #수량
     if k == "4":
         pyautogui.hotkey('ctrl', 'c')
         time.sleep(0.1)
         b = pyperclip.paste()
-        print('수량 :',b)
-        for i in range(2, 10000):
-            B = excel_ws['E{}'.format(i)]
-            if B.value == None:
-                excel_ws['E{}'.format(i)] = b
-                break
+        print('4 수량 :',b)
+        excel_ws['E{}'.format(i)] = b
     #품목명
     if k == "5":
         pyautogui.hotkey('ctrl', 'c')
         time.sleep(0.1)
         b = pyperclip.paste()
-        print('KG :',b)
-        for i in range(2, 10000):
-            B = excel_ws['F{}'.format(i)]
-            if B.value == None:
-                excel_ws['F{}'.format(i)] = b
-                break
+        print('5 KG :',b)
+        excel_ws['F{}'.format(i)] = b
     #메모1
     if k == "6":
         pyautogui.hotkey('ctrl', 'c')
         time.sleep(0.1)
         b = pyperclip.paste()
-        print('메모1 :',b)
-        for i in range(2, 10000):
-            B = excel_ws['I{}'.format(i)]
-            if B.value == None:
-                excel_ws['I{}'.format(i)] = b
-                break
+        print('6 메모1 :',b)
+        excel_ws['I{}'.format(i)] = b
     #메모2
     if k == "7":
         pyautogui.hotkey('ctrl', 'c')
         time.sleep(0.1)
         b = pyperclip.paste()
-        print('메모2 :',b)
-        for i in range(2, 10000):
-            B = excel_ws['J{}'.format(i)]
-            if B.value == None:
-                excel_ws['J{}'.format(i)] = b
-                break
+        print('7 메모2 :',b)
+        excel_ws['J{}'.format(i)] = b
     
         
     # 종료 조건문
@@ -113,6 +91,6 @@ while True:
         break
 
 # 엑셀 저장
-excel.save('D:\\js\\code\\auto_c&v_in_excel\\출력자료등록_양식_한진-메론양식(L-11) 메모 위치 이동 물어보기.xlsx')
+excel.save(dir)
 
 # C:\Users\dkfvk\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0
