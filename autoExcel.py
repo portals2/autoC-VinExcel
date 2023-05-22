@@ -12,6 +12,11 @@
 노트북에서 돌아가야 하니까 
 엑셀 주소도 따로 등록
 
+업그래이드 사항
+- dir 지정
+- 엑셀 칸 지정
+- 키보드 지정
+- 메론 양식 데이터 저장양식에 자동 저장
 '''
 
 import time
@@ -23,7 +28,7 @@ import openpyxl #엑셀
 
 # text.start()
 
-dir = 'C:\\Users\\LIM\\Desktop\\(엑셀파일)메론양식(23년).xlsx'
+dir = 'C:\\User\\LIM\\Desktop\\(엑셀파일)메론양식(23년).xlsx'
 excel = openpyxl.load_workbook(dir , data_only=True )
 excel_ws = excel.active
 
@@ -41,14 +46,20 @@ while True:
             if A.value == None:
                 excel_ws['A{}'.format(i)] = a
                 n = i
+                print("--------------------------------------------------------") 
                 break   
     #받는 분 전화
     if k == "2":
+        c = ''
         pyautogui.hotkey('ctrl', 'c')
         time.sleep(0.1)
         b = pyperclip.paste()
-        print('2 전화번호 :',b)
-        excel_ws['B{}'.format(i)] = b
+        for j in b:
+            if 48 <= ord(j) <=57:
+                c += j
+        c = c[:3] + '-' + c[3:7] + '-' + c[7:]
+        print('2 전화번호 :',c)
+        excel_ws['B{}'.format(i)] = c
     #주소
     if k == "3":
         pyautogui.hotkey('ctrl', 'c')
@@ -79,13 +90,19 @@ while True:
         excel_ws['I{}'.format(i)] = b
     #메모2
     if k == "7":
+        c = ''
         pyautogui.hotkey('ctrl', 'c')
         time.sleep(0.1)
         b = pyperclip.paste()
-        print('7 메모2 :',b)
-        excel_ws['J{}'.format(i)] = b
+        for j in b:
+            if 48 <= ord(j) <=57:
+                c += j
+        c = c[:3] + '-' + c[3:7] + '-' + c[7:]
+        print(c)
+        print('7 메모2 :',c)
+        excel_ws['J{}'.format(i)] = c
     
-        
+    
     # 종료 조건문
     if k == "f12":
         break
